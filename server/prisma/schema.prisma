@@ -21,7 +21,7 @@ generator joi {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
   url      = env("DB_CONNECTION_URL")
 }
 
@@ -42,7 +42,7 @@ model Student {
   staff_id    String
   name        String
   matric_no   String              @unique
-  fingerprint String              @db.LongText
+  fingerprint String              @db.Text
   created_at  DateTime
   courses      StudentCourse[]
   attendances  StudentAttendance[]

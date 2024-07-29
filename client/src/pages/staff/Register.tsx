@@ -71,12 +71,26 @@ const Register: FC = () => {
         <form className="login-form" method="post" action="#" onSubmit={handleRegisterStaff}>
           <FormControl>
             <FormLabel>Name</FormLabel>
-            <Input type="text" name="name" value={registerInput.name} onChange={handleInputChange} required />
+            <Input
+              type="text"
+              name="name"
+              autoComplete="given-name"
+              value={registerInput.name}
+              onChange={handleInputChange}
+              required
+            />
             {simpleValidator.current.message('name', registerInput.name, 'required|alpha_space|between:2,128')}
           </FormControl>
           <FormControl marginTop="1rem">
             <FormLabel>Email address</FormLabel>
-            <Input type="email" name="email" value={registerInput.email} onChange={handleInputChange} required />
+            <Input
+              type="email"
+              name="email"
+              autoComplete="email"
+              value={registerInput.email}
+              onChange={handleInputChange}
+              required
+            />
             {simpleValidator.current.message('email', registerInput.email, 'required|email|between:2,128')}
           </FormControl>
           <FormControl marginTop="1rem">

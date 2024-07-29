@@ -1,13 +1,13 @@
 PROJECT_NAME = Bio Attendance System
 
 conda-env:
-	conda create -n bas_env python=3.9
+	conda create -n bas_env python=3.9 -y
 
 client-deps:
-	npm --prefix ./client install
+	cd client && npm install
 
 server-deps:
-	npm --prefix ./server install
+	cd server && npm install
 	
 match-server-deps:
 	pip install -r ./server-py/requirements.txt
@@ -25,6 +25,6 @@ dev-migrate:
 	npm --prefix ./server run migrate:dev
 
 core-server-env:
-	cp ./server/.env.example ./server/.env
+	copy .\server\.env.example .\server\.env
 
 .PHONY: conda-env client-deps server-deps match-server-deps client-server core-server match-server dev-migrate

@@ -1,13 +1,7 @@
+from flask import Flask, request, jsonify, flash, redirect, abort
+from flask_sqlalchemy import SQLAlchemy
 import os
-from flask import (
-    Flask, 
-    jsonify,
-    flash,
-    request,
-    redirect,
-    abort
-)
-from werkzeug.utils import secure_filename
+from urllib.parse import quote as url_quote
 import cv2
 from flask_cors import CORS
 
