@@ -7,19 +7,19 @@ export function useBaseMutation<TRes = unknown, TError = unknown, TData = unknow
   url: string,
   method: 'post' | 'put' | 'delete' | 'post',
 ) {
+  console.log(method);
   return (useMutationOptions: Omit<UseMutationOptions<TRes, TError, TData, TContext>, 'mutationFn'> = {}) =>
-    useMutation<TRes, TError, TData, TContext>(
-      async (data) =>
-        method === 'delete'
-          ? (await axiosClient[method](url + ((data as TData & { url?: string })?.url || ''))).data
-          : (
-              await axiosClient[method](
-                url + ((data as TData & { url?: string })?.url || ''),
-                removeObjectProps(data as { [k: string]: unknown }, ['url']),
-              )
-            ).data,
-      useMutationOptions,
-    );
+    useMutation<TRes, TError, TData, TContext>(async (data) => {
+      console.log(method);
+      return method === 'delete'
+        ? (await axiosClient[method](url + ((data as TData & { url?: string })?.url || ''))).data
+        : (
+            await axiosClient[method](
+              url + ((data as TData & { url?: string })?.url || ''),
+              removeObjectProps(data as { [k: string]: unknown }, ['url']),
+            )
+          ).data;
+    }, useMutationOptions);
 }
 
 export function useBaseQuery<
